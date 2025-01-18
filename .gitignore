@@ -1,0 +1,4 @@
+env/*
+AImperatrizSRT/*
+srt_to_pdf/__pycache__/*
+*.srt
