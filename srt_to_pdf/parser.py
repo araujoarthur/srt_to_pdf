@@ -36,7 +36,17 @@ def parse_srt(lines: list) -> list:
                 # Check match on timestamp
             elif True:
                 pass
-                # Check Match on 
+                # Check Match on Textbox
+
+
+def get_timeinterval_block(block: str) -> dict:
+    """
+        Takes a string and checks if it's a time interval (via extract_timeinterval_chunks).
+        If it is a time interval, it separes the interval and passes each to extract_timestamp_chunks.
+        
+        If any of the above processes fails, returns an empty dict().
+    """
+    pass
 
 def extract_timeinterval_chunks(timeinterval: str) -> dict:
     """
@@ -63,6 +73,7 @@ def extract_timeinterval_chunks(timeinterval: str) -> dict:
     
     return {}
 
+
 def extract_timestamp_chunks(timestamp: str) -> dict:
     """
         Takes a string and tries to match it against the REGP_TIMESTAMP. If succeeds, returns
@@ -76,7 +87,7 @@ def extract_timestamp_chunks(timestamp: str) -> dict:
         }
 
         If it does not match the pattern, returns an empty dictionary.
-        
+
         - TO-DO Write functions to go from this to a dict with the same signature but the values
         as int/float. To go from values as int/floats to this signature AND to hold both.
     """
