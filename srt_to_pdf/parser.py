@@ -3,8 +3,22 @@ import regex
 REGP_TIMESTAMP = r'(^\d{2,}):([0-5][0-9]):([0-5][0-9],\d{3}$)'
 REGP_TIME_INTERVAL = r'^(\d{2,}:[0-5][0-9]:[0-5][0-9],\d{3})\s-->\s(\d{2,}:[0-5][0-9]:[0-5][0-9],\d{3})$'
 
+class ESRTParseError(Exception):
+    """
+        Exception raised on parsing scenarios.
+
+        Attributes:
+            message -- explanation of the error
+    """
+
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
 
 def read_srt(filepath:str) -> list:
+    """
+        Reads an SRT file and returns a list of lines.
+    """
     with open(filepath, 'r', encoding='utf-8-sig') as file:
         full_txt = file.read()
     lines = full_txt.splitlines()
@@ -31,22 +45,52 @@ def parse_srt(lines: list) -> list:
             if line.isdigit():
                 pass
                 chunk['id'] = int(id)
-            elif True:
-                raise
+            elif len(step := get_timeinterval_block(line)) == 2:
+                chunk['timestamp'] = step
                 # Check match on timestamp
             elif True:
                 pass
                 # Check Match on Textbox
-
+    return block
 
 def get_timeinterval_block(block: str) -> dict:
     """
         Takes a string and checks if it's a time interval (via extract_timeinterval_chunks).
         If it is a time interval, it separes the interval and passes each to extract_timestamp_chunks.
         
+         It's expected to take '00:00:23,541 --> 00:00:24,541' and return:
+
+         {
+            from: {
+                hour: '00',
+                minute: '00',
+                second: '23,541'
+            },
+            until: {
+                hour: '00',
+                minute: '00',
+                second: '24,541'
+            }
+         }
+        
         If any of the above processes fails, returns an empty dict().
     """
-    pass
+    time_interval = extract_timeinterval_chunks(block)
+    if len(time_interval) == 0:
+        return dict()
+    
+    start_time = extract_timestamp_chunks(time_interval['from'])
+    end_time = extract_timestamp_chunks(time_interval['until'])
+
+    if len(start_time) == 0 ^ len(end_time) == 0:
+        raise ESRTParseError('Error on parsing time interval block. Only one timestamp was found.').with_traceback()
+    
+    output = dict()
+    output['from'] = start_time
+    output['until'] = end_time
+
+    return output
+
 
 def extract_timeinterval_chunks(timeinterval: str) -> dict:
     """
