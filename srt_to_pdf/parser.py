@@ -144,9 +144,6 @@ def extract_timestamp_chunks(timestamp: str) -> dict:
         }
 
         If it does not match the pattern, returns an empty dictionary.
-
-        - TO-DO Write functions to go from this to a dict with the same signature but the values
-        as int/float. To go from values as int/floats to this signature AND to hold both.
     """
     match = regex.match(REGP_TIMESTAMP, timestamp)
 

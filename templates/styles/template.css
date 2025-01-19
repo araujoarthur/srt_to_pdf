@@ -1,0 +1,74 @@
+/* 1. Regular */
+@font-face {
+   font-family: 'Courier Prime';
+   src: url('../fonts/CourierPrime-Regular.ttf') format('truetype');
+   font-weight: 400;
+   font-style: normal;
+   font-display: swap;
+}
+
+/* 2. Bold */
+@font-face {
+   font-family: 'Courier Prime';
+   src: url('../fonts/CourierPrime-Bold.ttf') format('truetype');
+   font-weight: 700;
+   font-style: normal;
+   font-display: swap;
+}
+
+/* 3. Italic */
+@font-face {
+   font-family: 'Courier Prime';
+   src: url('../fonts/CourierPrime-Italic.ttf') format('truetype');
+   font-weight: 400;
+   font-style: italic;
+   font-display: swap;
+}
+
+body {
+   font-family: 'Courier Prime', monospace;
+   margin: 20px;
+}
+h1, h2, h3, h4, h5, h6 {
+   color: #333;
+   text-align: center;
+}
+p {
+   line-height: 1.6;
+}
+table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-bottom: 20px;
+}
+table, th, td {
+   border: 1px solid #ddd;
+}
+th, td {
+   padding: 8px;
+   text-align: left;
+}
+th {
+   background-color: #f2f2f2;
+}
+
+.timestamp {
+   color: #999;
+   font-size: 12px;
+   background-color: antiquewhite;
+   display: block;
+}
+
+.dialogueLine {
+   padding: 0px 20px 0px 20px;
+   font-size:14px;
+   margin-bottom:10px;
+}
+
+.dialogue {
+   border-width: 2px;
+   padding: 5px;
+   border-style: solid;
+   border-color: #c2c2c2;
+   margin-bottom: 15px;
+}
