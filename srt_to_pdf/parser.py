@@ -1,6 +1,7 @@
 import regex
 from .sanitizer import sanitize_tags, include_tag
 from .transformer import simplified_chunk_transform
+from pathlib import Path
 
 REGP_TIMESTAMP = r'(^\d{2,}):([0-5][0-9]):([0-5][0-9],\d{3}$)'
 REGP_TIME_INTERVAL = r'^(\d{2,}:[0-5][0-9]:[0-5][0-9],\d{3})\s-->\s(\d{2,}:[0-5][0-9]:[0-5][0-9],\d{3})$'
@@ -22,6 +23,9 @@ def read_srt(filepath:str) -> list:
     """
         Reads an SRT file and returns a list of lines.
     """
+    if not Path(filepath).exists():
+        raise FileNotFoundError(f'{filepath} does not exist.')
+    
     with open(filepath, 'r', encoding='utf-8-sig') as file:
         full_txt = file.read()
     lines = full_txt.splitlines()
@@ -31,6 +35,10 @@ def raw_parse_srt(lines: list) -> list:
     """
         Parses the SRT file into a list containing id, timestamp and lines of the block.
     """
+
+    if len(lines) == 0:
+        raise ESRTParseError('Empty file.').with_traceback()
+
     block = list()
     chunk = None
 
