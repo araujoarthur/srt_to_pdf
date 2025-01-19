@@ -73,3 +73,38 @@ th {
    margin-bottom: 15px;
    break-inside: avoid;
 }
+
+/* 7. Define Footer Styles Using @page */
+@page {
+   /* Define page margins */
+   size: A4;
+   margin: 20mm 20mm 30mm 20mm; /* top, right, bottom, left */
+
+   /* Define footer content */
+   @bottom-center {
+       content: element(footer);
+   }
+
+   footer{
+      position: running(footer);
+  }
+}
+
+/* 9. Style the Footer */
+.footer {
+   font-size: 12px;
+   text-align: center;
+   color: #555;
+   /* Optional: Add a separator line */
+   border-top: 1px solid #ccc;
+   padding-top: 5px;
+}
+
+.footer a {
+   color: #555;
+   text-decoration: none;
+}
+
+.footer a:hover {
+   text-decoration: underline;
+}
