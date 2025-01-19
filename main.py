@@ -10,6 +10,11 @@ def main():
     #for block in srt:
     #    print(block)
 
-    print(srt)
+    context = {
+        'title':'Die Kaiserin',
+        'subtitle':'Probe Episode',
+        'blocks':srt
+    }
+    s2p.generate_html('template',context)
 
 main()

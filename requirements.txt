@@ -1,1 +1,16 @@
+Brotli==1.1.0
+cffi==1.17.1
+cssselect2==0.7.0
+fonttools==4.55.3
+Jinja2==3.1.5
+MarkupSafe==3.0.2
+pillow==11.1.0
+pycparser==2.22
+pydyf==0.11.0
+pyphen==0.17.0
 regex==2024.11.6
+tinycss2==1.4.0
+tinyhtml5==2.0.0
+weasyprint==63.1
+webencodings==0.5.1
+zopfli==0.2.3.post1

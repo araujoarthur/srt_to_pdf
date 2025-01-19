@@ -3,26 +3,27 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="styles/template.css">
-   <title>Document</title>
+   <link rel="stylesheet" href="{{ css }}">
+   <title>Transcript</title>
 </head>
 <body>
    <header>
-      <h1>MOVIE TITLE/SERIE TITLE</h1>
-      <h2>SUBTITLE</h2>
+      <h1> {{ media.title }}</h1>
+      {% if media.subtitle %}
+      <h2>{{ media.subtitle }}</h2>
+      {% endif %}
    </header>
+   {% for block in media.blocks %}
    <div class="dialogue">
-      <span class="timestamp">00:00:11,500</span>
+      <span class="timestamp">{{ block.timestamp.from.hour }}:{{ block.timestamp.from.minute }}:{{ block.timestamp.from.second }}</span>
       <p class="dialogueLine">
-         Ach, das darf doch nicht wahr sein. Der Herzog ist jeden Augenblick hier.
+         {{ block.text}}
       </p>  
    </div>
+   {% endfor %}
 
-   <div class="dialogue">
-      <span class="timestamp">00:01:54,916</span>
-      <p class="dialogueLine">
-         [Kutscher] Hüa!
-      </p>  
-   </div>
+   <div class="footer">
+      <a href="https://github.com/araujoarthur/srt_to_pdf">Generated With SRT_TO_PDF</a>
+  </div>
 </body>
 </html>

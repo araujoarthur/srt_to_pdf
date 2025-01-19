@@ -1,5 +1,6 @@
 from .parser import read_srt, raw_parse_srt, complete_parse_srt
 from .transformer import simplified_chunk_transform, numeric_timestamp_transform, numeric_timeinterval_transform, string_timestamp_transform, time_timestamp_transform
+from .generator import generate_html
 __all__ = [
    'read_srt', 
    'raw_parse_srt',
@@ -9,4 +10,5 @@ __all__ = [
    'numeric_timeinterval_transform', 
    'string_timestamp_transform', 
    'time_timestamp_transform'
+   'generate_html'
    ]
