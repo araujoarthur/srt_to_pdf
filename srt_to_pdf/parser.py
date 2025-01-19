@@ -1,4 +1,6 @@
 import regex
+from .sanitizer import sanitize_tags, include_tag
+from .transformer import simplified_chunk_transform
 
 REGP_TIMESTAMP = r'(^\d{2,}):([0-5][0-9]):([0-5][0-9],\d{3}$)'
 REGP_TIME_INTERVAL = r'^(\d{2,}:[0-5][0-9]:[0-5][0-9],\d{3})\s-->\s(\d{2,}:[0-5][0-9]:[0-5][0-9],\d{3})$'
@@ -15,6 +17,7 @@ class ESRTParseError(Exception):
         self.message = message
         super().__init__(self.message)
 
+
 def read_srt(filepath:str) -> list:
     """
         Reads an SRT file and returns a list of lines.
@@ -24,34 +27,46 @@ def read_srt(filepath:str) -> list:
     lines = full_txt.splitlines()
     return lines
 
-def parse_srt(lines: list) -> list:
+def raw_parse_srt(lines: list) -> list:
     """
         Parses the SRT file into a list containing id, timestamp and lines of the block.
     """
     block = list()
-    chunk = dict()
-    chunk['id'] = -1
-    chunk['timestamp'] = dict()
-    chunk['lines'] = list()
+    chunk = None
 
     for line in lines:
-        if len(line) == 0:
-            block.append(chunk)
-            chunk.clear()
-            chunk['id'] = -1
-            chunk['timestamp'] = dict()
-            chunk['lines'] = list()
+        stripped_line = line.strip()
+        if len(stripped_line) == 0:
+            # if there's a chunk, append it to the block and resets the chunk
+            if chunk:
+                block.append(chunk)
+                chunk = None
+            continue
+
         else:
+            # If there's no chunk, init a new one. 
+            if chunk is None:
+                chunk = {
+                    'id': None,
+                    'timestamp': dict(),
+                    'lines': list()
+                 }
+                
             if line.isdigit():
-                pass
-                chunk['id'] = int(id)
+                chunk['id'] = int(line)
             elif len(step := get_timeinterval_block(line)) == 2:
                 chunk['timestamp'] = step
-                # Check match on timestamp
-            elif True:
-                pass
-                # Check Match on Textbox
+            elif include_tag(line):
+                chunk['lines'].append(sanitize_tags(line))
+
     return block
+
+def complete_parse_srt(lines: list) -> list:
+    """"
+        Parses the SRT file into a list of dictionaries containing id, timestamp and text of the block (all lines joined).
+    """
+    l = raw_parse_srt(lines)
+    return [simplified_chunk_transform(chunk) for chunk in l]
 
 def get_timeinterval_block(block: str) -> dict:
     """
@@ -91,7 +106,6 @@ def get_timeinterval_block(block: str) -> dict:
 
     return output
 
-
 def extract_timeinterval_chunks(timeinterval: str) -> dict:
     """
         Takes a string and tries to match it against the REGP_TIME_INTERVAL. If succeeds,
@@ -116,7 +130,6 @@ def extract_timeinterval_chunks(timeinterval: str) -> dict:
         return output
     
     return {}
-
 
 def extract_timestamp_chunks(timestamp: str) -> dict:
     """
@@ -146,3 +159,9 @@ def extract_timestamp_chunks(timestamp: str) -> dict:
         return output
     
     return {}
+
+def extract_text_line(line: str) -> str:
+    """
+        Takes a string and returns it if it's not a timestamp or an empty string.
+    """
+    return sanitize_tags(line)
