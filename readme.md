@@ -14,8 +14,11 @@ The following libraries are requirements of WeasyPrint:
 - Libffi: Foreign Function Interface library.
 - Libxml2 and Libxslt: For XML and XSLT processing.
 
+## Configurations
 
-## MacOS Details
+<details>
+
+<summary>MacOS</summary>
 
 On MacOS one can install it through [Homebrew](https://brew.sh):
 ```
@@ -72,6 +75,8 @@ Then just refresh your `PATH` variable. On terminal again type:
 ```bash
 source ~/.zshrc
 ```
+
+</details>
 
 ## Got Malware'd?
 Referencing the WeasyPrint's [documentation](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation), sometimes it can be marked as malware, but it's not.
