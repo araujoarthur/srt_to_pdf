@@ -23,17 +23,21 @@ The following libraries are requirements of WeasyPrint:
 <details>
 <summary> Windows Powershell
 </summary>
+
 ```powershell
 .\s2p-x64.exe --srt_file "probe.srt" --html_output "./out/out.html" --pdf_output "./out/out.pdf" --template_name "template" --pdf_title "Title" --pdf_subtitle "Subtitle"
 ```
+
 </details>
 
 <details>
 <summary> MacOS
 </summary>
+
 ```powershell
 ./s2p --srt_file "probe.srt" --html_output "./out/out.html" --pdf_output "./out/out.pdf" --template_name "template" --pdf_title "Title" --pdf_subtitle "Subtitle"
 ```
+
 </details>
 
 ## Python Script Usage
