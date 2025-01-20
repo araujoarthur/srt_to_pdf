@@ -1,26 +1,38 @@
 import srt_to_pdf as s2p
-from srt_to_pdf.sanitizer import sanitize_tags
 from pathlib import Path
+import fire
 
-#TO-DO Write an enhanced version of the parser that joins text from different timestamps that belongs to the same block
-# One way to verify that is through punctuation.
 
-def main():
-    files = Path('AImperatrizSRT/')
+def do_conversion(
+   srt_file: str = None,
+   html_output: str = None,
+   pdf_output: str = None,
+   template_name: str = None,
+   pdf_title: str = None,
+   pdf_subtitle: str = None
+   ):
+    """
+        Converts a subtitle SRT file to a PDF file using a template.
 
-    # Getting the srt files list comprehension
-    files = [file for file in files.iterdir() if (file.is_file() and file.suffix == '.srt')]
+        Args:
+            srt_file (str): The path to the SRT file.
+            html_output (str): The path where the HTML file will be saved, with filename and extension.
+            pdf_output (str): The path where the PDF file will be saved, with filename and extension.
+            template_name (str): The name of the template file, without extension.
+            pdf_title (str): The title of the PDF (presented on the heading).
+            pdf_subtitle (str): The subtitle of the PDF (presented on the heading).
+    """
+    if not any([srt_file, html_output, pdf_output, template_name, pdf_title, pdf_subtitle]):
+        raise fire.core.FireError(
+        "No arguments provided. Use `--help` to view usage information."
+    )
+    s2p.convert_srt_to_pdf(srt_file, html_output, pdf_output, template_name, pdf_title, pdf_subtitle)
 
-    for file in files:
-        s2p.convert_srt_to_pdf(
-            srt_file = file,
-            html_output = f'OUTPUT/HTML/{file.stem}.html',
-            pdf_output = f'OUTPUT/PDF/{file.stem}.pdf',
-            template_html = 'template',
-            template_css = 'templates/styles/template.css',
-            title = 'A Imperatriz',
-            subtitle = file.stem
-        )
+def main():  
+    try:
+        fire.Fire(do_conversion)
+    except fire.core.FireError as e:
+        fire.Fire(do_conversion, command=['--help'])
 
 
 main()

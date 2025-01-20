@@ -18,3 +18,5 @@ On MacOS one can install it through Homebrew:
 ```
 brew install cairo pango gdk-pixbuf libffi
 ```
+
+Referencing the WeasyPrint's [documentation](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation), sometimes it can be marked as malware, but it's not.

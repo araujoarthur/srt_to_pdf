@@ -1,8 +1,8 @@
 from .parser import read_srt, raw_parse_srt, complete_parse_srt
-from .generator import generate_html, generate_pdf
+from .generator import generate_html, generate_pdf, TEMPLATES_STYLE_PATH
 from pathlib import Path
 
-def convert_srt_to_pdf(srt_file: str, html_output: str, pdf_output:str, template_html: str, template_css: str, title:str, subtitle:str, **kwargs) -> None:
+def convert_srt_to_pdf(srt_file: str, html_output: str, pdf_output:str, template_name: str, title:str, subtitle:str, **kwargs) -> None:
    """
       Converts an SRT file to a PDF file.
    """
@@ -12,10 +12,12 @@ def convert_srt_to_pdf(srt_file: str, html_output: str, pdf_output:str, template
    context = {
       'title': title,
       'subtitle': subtitle,
-      'blocks': parsed_srt
+      'blocks': parsed_srt,
+      **kwargs
    }
 
-   generate_html(template_html, context, html_output)
-   generate_pdf(html_output, pdf_output, template_css)
+   generate_html(template_name, context, html_output)
+   print('HTML gen')
+   generate_pdf(html_output, pdf_output, TEMPLATES_STYLE_PATH / (template_name + '.css'))
 
    print(f'Success converting {Path(pdf_output).stem}.')
