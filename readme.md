@@ -18,7 +18,7 @@ The following libraries are requirements of WeasyPrint:
 
 <details>
 
-<summary>MacOS</summary>
+<summary> <h3> MacOS </h3> </summary>
 
 On MacOS one can install it through [Homebrew](https://brew.sh):
 ```
