@@ -35,10 +35,12 @@ The following libraries are requirements of WeasyPrint:
 </summary>
 
 ```powershell
-./s2p --srt_file "probe.srt" --html_output "./out/out.html" --pdf_output "./out/out.pdf" --template_name "template" --pdf_title "Title" --pdf_subtitle "Subtitle"
+./s2p --srt_file "./path/to/file.srt" --html_output "./path/to/out.html" --pdf_output "./path/to/out.pdf" --template_name "template" --pdf_title "Title" --pdf_subtitle "Subtitle"
 ```
 
 </details>
+
+The arguments are described when you run ``./s2p --help``
 
 ## Python Script Usage
 <details>
@@ -110,7 +112,7 @@ source ~/.zshrc
 </details>
 
 <details>
-<summary>Windows</summary>
+<summary> <h3> Windows </h3> </summary>
 1. Install WeasyPrint dependencies as specified by the [documentation](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#windows)
 
 2. Create the Virtual Environment and install the dependencies from *requirements.txt*.
