@@ -83,6 +83,12 @@ source ~/.zshrc
 
 </details>
 
+<details>
+<summary>Windows</summary>
+Install WeasyPrint dependencies as specified by the [documentation](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#windows)
+
+
+</details>
 </details>
 
 ## Got Malware'd?

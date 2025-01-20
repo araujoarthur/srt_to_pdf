@@ -36,7 +36,7 @@ def generate_html(template: str, ctx: dict, output_path: str = HTML_OUTPUT_PATH)
    template_render = env.get_template(template + '.html')
    output = template_render.render(media=ctx, css = TEMPLATES_STYLE_PATH / (template + '.css'))
    ensure_dir(output_path.parent)
-   with open(output_path, 'w') as f:
+   with open(output_path, 'w', encoding="utf-8") as f:
       f.write(output)
 
 def generate_pdf(html_file: str, output_file: str, css_file:str) -> None:

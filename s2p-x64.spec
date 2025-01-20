@@ -4,7 +4,12 @@
 a = Analysis(
     ['main.py'],
     pathex=[],
-    binaries=[],
+    binaries=[
+        ('C:/msys64/mingw64/bin/libgobject-2.0-0.dll', '.'), 
+        ('C:/msys64/mingw64/bin/libglib-2.0-0.dll','.'), 
+        ('C:/msys64/mingw64/bin/libpango-1.0-0.dll','.'), 
+        ('C:/msys64/mingw64/bin/libfontconfig-1.dll','.'),
+        ('C:/msys64/mingw64/bin/libpangoft2-1.0-0.dll','.')],
     datas=[],
     hiddenimports=[],
     hookspath=[],
@@ -22,7 +27,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='main',
+    name='s2p-x64',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -35,4 +40,6 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    onefile=True,
+    distpath="dist/x64"
 )
