@@ -14,6 +14,28 @@ The following libraries are requirements of WeasyPrint:
 - Libffi: Foreign Function Interface library.
 - Libxml2 and Libxslt: For XML and XSLT processing.
 
+## Release Application Usage
+
+1. Download the Latest Release
+
+2. On terminal, run:
+
+<details>
+<summary> Windows Powershell
+</summary>
+```powershell
+.\s2p-x64.exe --srt_file "probe.srt" --html_output "./out/out.html" --pdf_output "./out/out.pdf" --template_name "template" --pdf_title "Title" --pdf_subtitle "Subtitle"
+```
+</details>
+
+<details>
+<summary> MacOS
+</summary>
+```powershell
+./s2p --srt_file "probe.srt" --html_output "./out/out.html" --pdf_output "./out/out.pdf" --template_name "template" --pdf_title "Title" --pdf_subtitle "Subtitle"
+```
+</details>
+
 ## Python Script Usage
 <details>
 
@@ -85,9 +107,11 @@ source ~/.zshrc
 
 <details>
 <summary>Windows</summary>
-Install WeasyPrint dependencies as specified by the [documentation](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#windows)
+1. Install WeasyPrint dependencies as specified by the [documentation](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#windows)
 
+2. Create the Virtual Environment and install the dependencies from *requirements.txt*.
 
+3. Run the script.
 </details>
 </details>
 
