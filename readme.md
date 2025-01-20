@@ -14,7 +14,12 @@ The following libraries are requirements of WeasyPrint:
 - Libffi: Foreign Function Interface library.
 - Libxml2 and Libxslt: For XML and XSLT processing.
 
-## Configurations
+## Python Script Usage
+<details>
+
+<summary>Expand</summary>
+
+### Configurations
 
 <details>
 
@@ -70,11 +75,13 @@ Paste the following and save:
 export PATH="/opt/homebrew/bin:$PATH"
 ```
 
-Then just refresh your `PATH` variable. On terminal again type:
+Then just refresh your `PATH` variable. Once in terminal again, type:
 
 ```bash
 source ~/.zshrc
 ```
+
+</details>
 
 </details>
 

@@ -1,8 +1,15 @@
+import sys
 import jinja2
 from pathlib import Path
 from weasyprint import HTML, CSS
 
-FILE_PATH = Path(__file__).resolve().parent.parent
+if (getattr(sys, 'frozen', False)):
+   FILE_PATH = Path(sys.executable).parent
+else:
+   FILE_PATH = Path(__file__).resolve().parent.parent
+
+
+# FILE_PATH = Path(__file__).resolve().parent.parent | deprecated in benefit of the above.
 HTML_OUTPUT_PATH = FILE_PATH / 'OUTPUT' / 'HTML'
 TEMPLATES_PATH = FILE_PATH / 'templates'
 TEMPLATES_STYLE_PATH = TEMPLATES_PATH / 'styles'

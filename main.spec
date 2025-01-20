@@ -4,7 +4,7 @@
 a = Analysis(
     ['main.py'],
     pathex=[],
-    binaries=[('/opt/homebrew/lib/libgobject-2.0.dylib', '.'), ('/opt/homebrew/Cellar/glib/2.82.4/lib/libgobject-2.0.dylib', '.')],
+    binaries=[],
     datas=[],
     hiddenimports=[],
     hookspath=[],
