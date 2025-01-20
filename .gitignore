@@ -3,3 +3,7 @@ AImperatrizSRT/*
 srt_to_pdf/__pycache__/*
 OUTPUT/*
 *.srt
+dist/*
+build/*
+env32/*
+env64/*
