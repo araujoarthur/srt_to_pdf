@@ -8,3 +8,5 @@ build/*
 env32/*
 env64/*
 releases/*
+out/*
+*.exe
