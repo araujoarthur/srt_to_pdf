@@ -121,6 +121,19 @@ source ~/.zshrc
 </details>
 </details>
 
+## Packaging with PyInstaller
+
+To package it with PyInstaller you'll need to install [MSYS2](https://www.msys2.org/) and within the terminal, install the following libraries:
+
+```bash
+pacman -S \
+  mingw-w64-x86_64-glib2 \
+  mingw-w64-x86_64-pango \
+  mingw-w64-x86_64-fontconfig \
+  mingw-w64-x86_64-freetype \
+  mingw-w64-x86_64-cairo
+```
+
 ## Got Malware'd?
 Referencing the WeasyPrint's [documentation](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation), sometimes it can be marked as malware, but it's not.
 
