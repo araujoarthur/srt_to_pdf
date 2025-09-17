@@ -35,7 +35,6 @@ def raw_parse_srt(lines: list) -> list:
     """
         Parses the SRT file into a list containing id, timestamp and lines of the block.
     """
-
     if len(lines) == 0:
         raise ESRTParseError('Empty file.').with_traceback()
 
@@ -64,9 +63,8 @@ def raw_parse_srt(lines: list) -> list:
                 chunk['id'] = int(line)
             elif len(step := get_timeinterval_block(line)) == 2:
                 chunk['timestamp'] = step
-            elif include_tag(line):
+            else:
                 chunk['lines'].append(sanitize_tags(line))
-
     return block
 
 def complete_parse_srt(lines: list) -> list:
